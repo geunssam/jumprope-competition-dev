@@ -1,28 +1,22 @@
-import { useState } from 'react'
-import './App.css'
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import LoginPage from './components/LoginPage';
+import HomePage from './components/HomePage';
+import './App.css';
 
+// 메인 앱 컴포넌트 (로그인 상태에 따라 페이지 전환)
+const AppContent = () => {
+  const { user } = useAuth();
+
+  return user ? <HomePage /> : <LoginPage />;
+};
+
+// 루트 앱 컴포넌트
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <h1>JumpRope Master v20</h1>
-        <p>초등학교 줄넘기 연습 및 대회 관리 시스템</p>
-      </div>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Phase 1: 프로젝트 초기화 완료
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Vite + React 19 프로젝트가 성공적으로 생성되었습니다!
-      </p>
-    </>
-  )
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
