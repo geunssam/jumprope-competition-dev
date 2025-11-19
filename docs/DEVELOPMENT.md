@@ -8,10 +8,10 @@
 
 **시작일**: 2025-01-18
 **목표 완료일**: 2025-02-14 (4주)
-**현재 Phase**: Phase 2 (Firebase 설정 + 인증 완료)
+**현재 Phase**: Phase 3 (Tailwind + shadcn/ui 완료)
 
 ```
-전체 진행률: ██████░░░░ 25% (Phase 0-2 완료)
+전체 진행률: ████████░░ 33% (Phase 0-3 완료)
 ```
 
 ---
@@ -117,20 +117,42 @@
 
 ---
 
-### ⏳ Phase 3: Tailwind + shadcn/ui (대기 중)
-**예상 기간**: 1일
-**상태**: 대기 중 ⏳
+### ✅ Phase 3: Tailwind + shadcn/ui (완료)
+**기간**: 2025-01-18
+**상태**: 완료 ✅
 
-**체크리스트**:
-- [ ] Tailwind CSS 설치
-- [ ] shadcn/ui 설치
-- [ ] 17개 컴포넌트 설치 (Button, Input, Dialog 등)
-- [ ] 전역 스타일 설정
-- [ ] Git Push (마일스톤 M3)
+**완료 항목**:
+- [x] Tailwind CSS 설치 및 설정 (3.4+)
+  - tailwindcss, postcss, autoprefixer
+  - `tailwind.config.js` 생성
+  - `postcss.config.js` 생성
+- [x] shadcn/ui 초기화
+  - `components.json` 생성
+  - `src/lib/utils.js` 작성
+  - 경로 별칭(@) 설정 (vite.config.js)
+- [x] 17개 UI 컴포넌트 설치
+  - baseball-firebase에서 복사
+  - button, card, dialog, input, table, badge, alert, avatar, checkbox, dropdown-menu, label, select, tabs, textarea, tooltip
+- [x] Radix UI 패키지 설치
+  - @radix-ui/* (11개 패키지)
+  - class-variance-authority, lucide-react
+  - 총 63개 패키지 추가 (총 423개)
+- [x] 기존 컴포넌트 마이그레이션
+  - LoginPage.jsx → Tailwind + shadcn/ui
+  - HomePage.jsx → Tailwind + shadcn/ui
+  - CSS 파일 제거
+- [x] Git Push (마일스톤 M3) ✅
 
-**참고 파일**:
-- baseball-firebase: `tailwind.config.js`
-- baseball-firebase: `src/components/ui/`
+**Git**:
+- Commit: `06c1554` - Phase 3 완료
+- 파일: 27개 변경, 2476줄 추가, 499줄 삭제
+
+**생성된 파일**:
+- `tailwind.config.js` - Tailwind 설정
+- `postcss.config.js` - PostCSS 설정
+- `components.json` - shadcn/ui 설정
+- `src/lib/utils.js` - cn() 유틸리티 함수
+- `src/components/ui/` (15개 컴포넌트)
 
 ---
 
@@ -180,7 +202,7 @@
 
 - [x] **M1**: Vite 프로젝트 초기화 완료 (Phase 1) ✅
 - [x] **M2**: Google 로그인 성공 (Phase 2) ✅
-- [ ] **M3**: shadcn/ui 설치 완료 (Phase 3)
+- [x] **M3**: shadcn/ui 설치 완료 (Phase 3) ✅
 - [ ] **M4**: 타이머 시스템 완성 (Phase 7) ⭐
 - [ ] **M5**: 배지 자동 수여 성공 (Phase 8)
 - [ ] **M6**: 통계 차트 표시 (Phase 9)
@@ -230,10 +252,31 @@
 - Commits: `e43dac3`, `f86a943`
 - **마일스톤 M2 달성** ✅
 
+#### ✅ Phase 3: Tailwind CSS + shadcn/ui
+- Tailwind CSS 3.4+ 설치 (tailwindcss, postcss, autoprefixer)
+- tailwind.config.js 생성 (shadcn/ui 테마 설정)
+- postcss.config.js 생성
+- src/index.css에 Tailwind directives 추가 (@tailwind base/components/utilities)
+- shadcn/ui 초기화:
+  - components.json 생성
+  - src/lib/utils.js 작성 (cn 함수)
+  - vite.config.js에 경로 별칭(@) 추가
+- 17개 UI 컴포넌트 설치 (baseball-firebase에서 복사):
+  - button, card, dialog, input, table
+  - badge, alert, avatar, checkbox, dropdown-menu
+  - label, select, tabs, textarea, tooltip
+- Radix UI 패키지 63개 추가 (총 423개 패키지)
+- 기존 컴포넌트 Tailwind로 마이그레이션:
+  - LoginPage: Card, Button, Alert 사용
+  - HomePage: Card, Badge, Avatar 사용
+  - CSS 파일 제거
+- Commit: `06c1554`
+- **마일스톤 M3 달성** ✅
+
 #### 📌 다음 단계
-- Phase 3: Tailwind CSS + shadcn/ui 설치
-- 17개 UI 컴포넌트 설치
-- 전역 테마 설정
+- Phase 4: firestoreService + RecordContext 구현
+- Firebase CRUD 패턴 구축
+- 전역 상태 관리
 
 ---
 
@@ -262,6 +305,6 @@ _(현재 이슈 없음)_
 
 ---
 
-**Last Updated**: 2025-01-18 16:00
-**Current Phase**: Phase 2 (완료) ✅
-**Next Phase**: Phase 3 (Tailwind CSS + shadcn/ui)
+**Last Updated**: 2025-01-18 17:00
+**Current Phase**: Phase 3 (완료) ✅
+**Next Phase**: Phase 4 (firestoreService + RecordContext)
