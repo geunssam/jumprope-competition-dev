@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import './LoginPage.css';
+import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 const LoginPage = () => {
   const { signInWithGoogle } = useAuth();
@@ -21,35 +23,41 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-header">
-          <h1>🏃‍♂️ JumpRope Master</h1>
-          <p>초등학교 줄넘기 연습 및 대회 관리 시스템</p>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <Card className="w-full max-w-md shadow-xl">
+        <CardHeader className="text-center space-y-2">
+          <div className="text-6xl mb-2">🏃‍♂️</div>
+          <CardTitle className="text-3xl font-bold">JumpRope Master</CardTitle>
+          <CardDescription className="text-base">
+            초등학교 줄넘기 연습 및 대회 관리 시스템
+          </CardDescription>
+        </CardHeader>
 
-        <div className="login-content">
-          <h2>교사 로그인</h2>
-          <p className="login-description">
-            Google 계정으로 로그인하여 시작하세요
-          </p>
+        <CardContent className="space-y-4">
+          <div className="text-center space-y-2">
+            <h2 className="text-xl font-semibold">교사 로그인</h2>
+            <p className="text-sm text-muted-foreground">
+              Google 계정으로 로그인하여 시작하세요
+            </p>
+          </div>
 
           {error && (
-            <div className="error-message">
-              {error}
-            </div>
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           )}
 
-          <button
+          <Button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="google-login-btn"
+            className="w-full h-12 text-base"
+            size="lg"
           >
             {loading ? (
               '로그인 중...'
             ) : (
-              <>
-                <svg viewBox="0 0 24 24" width="24" height="24">
+              <div className="flex items-center gap-3">
+                <svg viewBox="0 0 24 24" width="20" height="20">
                   <path
                     fill="#4285F4"
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -67,16 +75,18 @@ const LoginPage = () => {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Google로 로그인
-              </>
+                <span>Google로 로그인</span>
+              </div>
             )}
-          </button>
-        </div>
+          </Button>
+        </CardContent>
 
-        <div className="login-footer">
-          <p>v20 개발 중 | Phase 2: Firebase 인증</p>
-        </div>
-      </div>
+        <CardFooter className="justify-center">
+          <p className="text-xs text-muted-foreground">
+            v20 개발 중 | Phase 3: Tailwind + shadcn/ui
+          </p>
+        </CardFooter>
+      </Card>
     </div>
   );
 };
