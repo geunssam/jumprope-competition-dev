@@ -8,10 +8,10 @@
 
 **시작일**: 2025-01-18
 **목표 완료일**: 2025-02-14 (4주)
-**현재 Phase**: Phase 0 (레포 설정 완료)
+**현재 Phase**: Phase 1 (프로젝트 초기화 완료)
 
 ```
-전체 진행률: ███░░░░░░░ 5% (Phase 0 완료)
+전체 진행률: ████░░░░░░ 15% (Phase 0-1 완료)
 ```
 
 ---
@@ -36,19 +36,40 @@
 
 ---
 
-### ⏳ Phase 1: 프로젝트 초기화 (대기 중)
-**예상 기간**: 1일
-**상태**: 대기 중 ⏳
+### ✅ Phase 1: 프로젝트 초기화 (완료)
+**기간**: 2025-01-18
+**상태**: 완료 ✅
 
-**체크리스트**:
-- [ ] Git 브랜치 생성 (`feature/jumprope-master`)
-- [ ] Vite 프로젝트 생성 (`npm create vite@latest`)
-- [ ] 기본 의존성 설치 (React 19.1.1, React Router v7)
-- [ ] 기본 폴더 구조 생성 (`src/components`, `src/contexts`, `src/services`, `src/utils`)
-- [ ] Git Push (마일스톤 M1)
+**완료 항목**:
+- [x] Git 브랜치 생성 (`feature/jumprope-master`)
+- [x] Vite 프로젝트 생성 (Vite 6.0.5)
+- [x] 기본 의존성 설치
+  - React 19.0.0
+  - React DOM 19.0.0
+  - React Router DOM 7.1.1
+  - 총 269개 패키지
+- [x] 기본 폴더 구조 생성
+  - `src/components/` (React 컴포넌트)
+  - `src/contexts/` (Context API)
+  - `src/services/` (Firebase 서비스)
+  - `src/utils/` (유틸리티 함수)
+- [x] ESLint 설정 완료
+- [x] Git Push (마일스톤 M1) ✅
 
-**참고 파일**:
-- CLAUDE.md의 Phase 1 섹션
+**Git**:
+- Branch: `feature/jumprope-master`
+- Commit: `4a14c45` - Phase 1 완료
+- 파일: 9개 생성, 5048줄 추가
+
+**생성된 파일**:
+- `package.json` - 프로젝트 설정
+- `vite.config.js` - Vite 설정
+- `eslint.config.js` - ESLint 설정
+- `index.html` - 메인 HTML
+- `src/main.jsx` - 엔트리 포인트
+- `src/App.jsx` - 메인 컴포넌트
+- `src/App.css` - App 스타일
+- `src/index.css` - 전역 스타일
 
 ---
 
@@ -133,7 +154,7 @@
 
 ## 🎯 주요 마일스톤
 
-- [ ] **M1**: Vite 프로젝트 초기화 완료 (Phase 1)
+- [x] **M1**: Vite 프로젝트 초기화 완료 (Phase 1) ✅
 - [ ] **M2**: Google 로그인 성공 (Phase 2)
 - [ ] **M3**: shadcn/ui 설치 완료 (Phase 3)
 - [ ] **M4**: 타이머 시스템 완성 (Phase 7) ⭐
@@ -146,18 +167,33 @@
 
 ## 📝 개발 로그
 
-### 2025-01-18 (Phase 0)
+### 2025-01-18 (Phase 0 & Phase 1)
 
-#### ✅ 레포지토리 설정
+#### ✅ Phase 0: 레포지토리 설정
 - GitHub CLI로 새 레포 생성
 - URL: https://github.com/geunssam/jumprope-competition-dev
 - Public 레포지토리로 설정
 - README.md, .gitignore, CLAUDE.md 작성
 - docs/DEVELOPMENT.md 생성 (이 파일)
 
+#### ✅ Phase 1: 프로젝트 초기화
+- Git 브랜치 생성: `feature/jumprope-master`
+- Vite 6.0.5 + React 19.0.0 프로젝트 생성
+- React Router DOM 7.1.1 설치
+- 269개 패키지 설치 완료 (취약점 0개)
+- 기본 폴더 구조 생성:
+  - `src/components/` - React 컴포넌트
+  - `src/contexts/` - Context API
+  - `src/services/` - Firebase 서비스
+  - `src/utils/` - 유틸리티 함수
+- ESLint 설정 완료
+- Commit: `4a14c45`
+- **마일스톤 M1 달성** ✅
+
 #### 📌 다음 단계
-- Phase 1 시작 대기 중
-- 사용자 요청 시 Vite 프로젝트 초기화 진행
+- Phase 2: Firebase 설정 + 인증
+- Firebase 프로젝트 생성 및 SDK 설치
+- Google 로그인 구현
 
 ---
 
@@ -186,6 +222,6 @@ _(현재 이슈 없음)_
 
 ---
 
-**Last Updated**: 2025-01-18
-**Current Phase**: Phase 0 (완료)
-**Next Phase**: Phase 1 (대기 중)
+**Last Updated**: 2025-01-18 15:30
+**Current Phase**: Phase 1 (완료) ✅
+**Next Phase**: Phase 2 (Firebase 설정 + 인증)
