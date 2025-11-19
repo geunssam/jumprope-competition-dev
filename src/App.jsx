@@ -1,4 +1,5 @@
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { RecordProvider } from './contexts/RecordContext';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import './App.css';
@@ -14,7 +15,9 @@ const AppContent = () => {
 function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <RecordProvider>
+        <AppContent />
+      </RecordProvider>
     </AuthProvider>
   );
 }
