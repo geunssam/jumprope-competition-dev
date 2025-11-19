@@ -1,0 +1,144 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ============================================
+    // 🚨 테스트 모드 - 개발 단계에서만 사용!
+    // 나중에 보안 Rules로 변경 필요
+    // ============================================
+
+    // 로그인한 사용자는 모든 작업 가능
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ============================================
+    // 헬퍼 함수 (나중에 사용)
+    // ============================================
+
+    // 로그인 확인
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // 데이터 소유자 확인
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // ============================================
+    // CollectionGroup 쿼리 지원 (학생 로그인용)
+    // ============================================
+
+    // 학생 코드로 로그인할 때 모든 users의 students 컬렉션 검색 허용
+    match /{path=**}/students/{studentId} {
+      allow read: if true;  // 학생 코드로 로그인하기 위해 collectionGroup 쿼리 허용
+    }
+
+    // 학생용 데이터 조회를 위한 collectionGroup 규칙들
+    match /{path=**}/finishedRecords/{recordId} {
+      allow read: if true;  // 학생이 완료된 기록을 볼 수 있도록
+    }
+
+    match /{path=**}/records/{recordId} {
+      allow read: if true;  // 학생이 진행 중인 기록을 볼 수 있도록
+    }
+
+    match /{path=**}/studentBadges/{studentId} {
+      allow read: if true;  // 학생이 배지를 볼 수 있도록
+    }
+
+    match /{path=**}/studentHistory/{studentId} {
+      allow read: if true;  // 학생이 기록을 볼 수 있도록
+    }
+
+    // ============================================
+    // 사용자별 데이터 (users 컬렉션)
+    // ============================================
+
+    match /users/{userId} {
+      // 프로필: 본인만 쓰기, 로그인한 사람은 읽기 가능
+      match /profile/{document=**} {
+        allow read: if isSignedIn();
+        allow write: if isOwner(userId);
+      }
+
+      // 학급 데이터
+      match /classes/{classId} {
+        allow read: if isOwner(userId);
+        allow write: if isOwner(userId);
+      }
+
+      // 학생 데이터
+      match /students/{studentId} {
+        allow read: if isOwner(userId);
+        allow write: if isOwner(userId);
+      }
+
+      // 종목 데이터
+      match /events/{eventId} {
+        allow read: if isOwner(userId);
+        allow write: if isOwner(userId);
+      }
+
+      // 세션 데이터 (연습/대회)
+      match /sessions/{sessionId} {
+        allow read: if isOwner(userId);
+        allow write: if isOwner(userId);
+      }
+
+      // 기록 데이터 (진행 중)
+      match /records/{recordId} {
+        // 읽기: collectionGroup 규칙(학생용)에 의해 모든 사람 조회 가능
+        allow create: if isOwner(userId);
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+
+      // 완료된 기록
+      match /finishedRecords/{recordId} {
+        // 읽기: collectionGroup 규칙(학생용)에 의해 모든 사람 조회 가능
+        allow write: if isOwner(userId);
+      }
+
+      // 학생 배지
+      match /studentBadges/{studentId} {
+        // 읽기: collectionGroup 규칙(학생용)에 의해 모든 사람 조회 가능
+        allow write: if isOwner(userId);
+      }
+
+      // 학생 히스토리
+      match /studentHistory/{studentId} {
+        // 읽기: collectionGroup 규칙(학생용)에 의해 모든 사람 조회 가능
+        allow write: if isOwner(userId);
+      }
+
+      // 설정
+      match /settings/{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // 커스텀 배지
+      match /customBadges/{badgeId} {
+        allow read: if isSignedIn();  // 모든 로그인 유저가 볼 수 있음
+        allow write: if isOwner(userId);  // 본인만 수정
+      }
+    }
+
+    // ============================================
+    // 개인정보 처리 동의 (privacy_consents 컬렉션)
+    // ============================================
+
+    match /privacy_consents/{consentId} {
+      // 읽기: 본인의 동의 기록만
+      allow read: if isSignedIn() &&
+                     resource.data.teacherId == request.auth.uid;
+
+      // 쓰기: 본인의 동의 기록만 생성/수정 가능
+      allow write: if isSignedIn() &&
+                      request.resource.data.teacherId == request.auth.uid &&
+                      request.resource.data.consentType == 'teacher';
+    }
+  }
+}
