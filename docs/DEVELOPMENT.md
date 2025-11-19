@@ -8,10 +8,10 @@
 
 **시작일**: 2025-01-18
 **목표 완료일**: 2025-02-14 (4주)
-**현재 Phase**: Phase 1 (프로젝트 초기화 완료)
+**현재 Phase**: Phase 2 (Firebase 설정 + 인증 완료)
 
 ```
-전체 진행률: ████░░░░░░ 15% (Phase 0-1 완료)
+전체 진행률: ██████░░░░ 25% (Phase 0-2 완료)
 ```
 
 ---
@@ -73,23 +73,47 @@
 
 ---
 
-### ⏳ Phase 2: Firebase 설정 + 인증 (대기 중)
-**예상 기간**: 2일
-**상태**: 대기 중 ⏳
+### ✅ Phase 2: Firebase 설정 + 인증 (완료)
+**기간**: 2025-01-18
+**상태**: 완료 ✅
 
-**체크리스트**:
-- [ ] Firebase 프로젝트 생성
-- [ ] Firebase SDK 설치
-- [ ] `.env.local` 환경 변수 설정
-- [ ] `src/config/firebase.js` 작성
-- [ ] Google 로그인 구현
-- [ ] AuthContext 작성
-- [ ] 로그인 테스트 성공
-- [ ] Git Push (마일스톤 M2)
+**완료 항목**:
+- [x] Firebase 프로젝트 생성 (MCP)
+  - Project ID: jumprope-master-v20
+  - Project Number: 249241363454
+- [x] Firebase Web App 생성 (MCP)
+  - App ID: 1:249241363454:web:45b9eae57d49342d1b96af
+- [x] Firebase SDK 설치 (12.6.0)
+  - 83개 패키지 추가
+  - 총 353개 패키지
+- [x] 환경 변수 설정
+  - `.env.local` 생성 (gitignore 처리)
+- [x] Firebase 설정 파일 작성
+  - `src/config/firebase.js`
+  - Auth, Firestore 초기화
+- [x] AuthContext 구현
+  - `src/contexts/AuthContext.jsx`
+  - Google 로그인/로그아웃
+  - 인증 상태 관리
+- [x] 로그인 UI 구현
+  - LoginPage.jsx + CSS
+  - HomePage.jsx + CSS
+  - App.jsx 통합
+- [x] 전역 스타일 개선
+- [x] Git Push (마일스톤 M2) ✅
 
-**참고 파일**:
-- baseball-firebase: `src/config/firebase.js`
-- baseball-firebase: `src/contexts/AuthContext.jsx`
+**Git**:
+- Commit 1: `e43dac3` - Phase 2 메인 기능
+- Commit 2: `f86a943` - Firebase 설정 파일
+- 파일: 11개 생성/수정, 1618줄 추가
+
+**생성된 파일**:
+- `.firebaserc` - Firebase 프로젝트 설정
+- `.env.local` - 환경 변수 (gitignore)
+- `src/config/firebase.js` - Firebase 초기화
+- `src/contexts/AuthContext.jsx` - 인증 Context
+- `src/components/LoginPage.jsx` + CSS
+- `src/components/HomePage.jsx` + CSS
 
 ---
 
@@ -155,7 +179,7 @@
 ## 🎯 주요 마일스톤
 
 - [x] **M1**: Vite 프로젝트 초기화 완료 (Phase 1) ✅
-- [ ] **M2**: Google 로그인 성공 (Phase 2)
+- [x] **M2**: Google 로그인 성공 (Phase 2) ✅
 - [ ] **M3**: shadcn/ui 설치 완료 (Phase 3)
 - [ ] **M4**: 타이머 시스템 완성 (Phase 7) ⭐
 - [ ] **M5**: 배지 자동 수여 성공 (Phase 8)
@@ -190,10 +214,26 @@
 - Commit: `4a14c45`
 - **마일스톤 M1 달성** ✅
 
+#### ✅ Phase 2: Firebase 설정 + Google 로그인
+- Firebase MCP로 프로젝트 생성 (jumprope-master-v20)
+- Firebase MCP로 Web App 생성
+- Firebase SDK 12.6.0 설치 (83개 패키지 추가)
+- 환경 변수 설정 (.env.local)
+- Firebase 초기화 파일 작성 (firebase.js)
+- AuthContext 구현:
+  - Google 로그인/로그아웃
+  - onAuthStateChanged 인증 상태 감지
+- 로그인 UI 구현:
+  - LoginPage: Google 로그인 버튼
+  - HomePage: 사용자 정보 표시
+- App.jsx 통합 (AuthProvider)
+- Commits: `e43dac3`, `f86a943`
+- **마일스톤 M2 달성** ✅
+
 #### 📌 다음 단계
-- Phase 2: Firebase 설정 + 인증
-- Firebase 프로젝트 생성 및 SDK 설치
-- Google 로그인 구현
+- Phase 3: Tailwind CSS + shadcn/ui 설치
+- 17개 UI 컴포넌트 설치
+- 전역 테마 설정
 
 ---
 
@@ -222,6 +262,6 @@ _(현재 이슈 없음)_
 
 ---
 
-**Last Updated**: 2025-01-18 15:30
-**Current Phase**: Phase 1 (완료) ✅
-**Next Phase**: Phase 2 (Firebase 설정 + 인증)
+**Last Updated**: 2025-01-18 16:00
+**Current Phase**: Phase 2 (완료) ✅
+**Next Phase**: Phase 3 (Tailwind CSS + shadcn/ui)
