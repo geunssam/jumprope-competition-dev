@@ -5,6 +5,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ClassStudentManagementView from './ClassStudentManagementView';
+import EventManagementView from './EventManagementView';
+import SessionManagementView from './SessionManagementView';
 import { Toaster } from 'react-hot-toast';
 
 const HomePage = () => {
@@ -50,6 +52,8 @@ const HomePage = () => {
           <TabsList className="mb-6">
             <TabsTrigger value="dashboard">대시보드</TabsTrigger>
             <TabsTrigger value="class-student">학급/학생 관리</TabsTrigger>
+            <TabsTrigger value="events">종목 관리</TabsTrigger>
+            <TabsTrigger value="sessions">세션 관리</TabsTrigger>
           </TabsList>
 
           <TabsContent value="dashboard" className="space-y-6">
@@ -120,6 +124,14 @@ const HomePage = () => {
 
           <TabsContent value="class-student">
             <ClassStudentManagementView />
+          </TabsContent>
+
+          <TabsContent value="events">
+            <EventManagementView />
+          </TabsContent>
+
+          <TabsContent value="sessions">
+            <SessionManagementView />
           </TabsContent>
         </Tabs>
       </main>
